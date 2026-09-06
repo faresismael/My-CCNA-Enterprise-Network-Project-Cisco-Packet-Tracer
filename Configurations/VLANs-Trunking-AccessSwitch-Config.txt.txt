@@ -1,0 +1,19 @@
+! Access Switch (A-SW1) VLAN & Trunking Configuration
+enable
+configure terminal
+
+! Create VLANs
+vlan 10
+ name Guest_WIFI
+vlan 20
+ name Employee_WIFI
+vlan 30
+ name Voice
+vlan 40
+ name Data
+
+! Configure Trunk Ports connecting to Distribution Switches
+interface range GigabitEthernet0/1 - 2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan 1,10,20,30,40
