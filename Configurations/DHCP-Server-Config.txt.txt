@@ -1,0 +1,41 @@
+! R1 - DHCP Server Configuration for all VLANs
+enable
+conf t
+
+! Excluded Addresses (Reserved for Gateways and Static IPs)
+ip dhcp excluded-address 192.168.40.1 192.168.40.10
+ip dhcp excluded-address 192.168.30.1 192.168.30.10
+ip dhcp excluded-address 192.168.1.1 192.168.1.10
+ip dhcp excluded-address 192.168.20.1 192.168.20.10
+ip dhcp excluded-address 192.168.10.1 192.168.10.10
+
+! DHCP Pool for Data VLAN
+ip dhcp pool DATA
+ network 192.168.40.0 255.255.255.0
+ default-router 192.168.40.3
+ dns-server 8.8.8.8
+
+! DHCP Pool for Voice VLAN (with CME pointer)
+ip dhcp pool VOIP
+ network 192.168.30.0 255.255.255.0
+ option 150 ip 192.168.100.1
+
+! DHCP Pool for Native/Management VLAN (with WLC pointer)
+ip dhcp pool native
+ network 192.168.1.0 255.255.255.0
+ default-router 192.168.1.3
+ option 43 ip 192.168.100.2
+ dns-server 8.8.8.8
+
+! DHCP Pool for Guest Wi-Fi
+ip dhcp pool Guest
+ network 192.168.10.0 255.255.255.0
+ default-router 192.168.10.3
+ dns-server 8.8.8.8
+
+! DHCP Pool for Employee Wi-Fi
+ip dhcp pool Employee
+ network 192.168.20.0 255.255.255.0
+ default-router 192.168.20.3
+ dns-server 8.8.8.8
+end
