@@ -1,0 +1,19 @@
+! R1 - DHCP Server for Voice VLAN with Option 150
+enable
+configure terminal
+ip dhcp pool VOICE_VLAN30
+ network 192.168.30.0 255.255.255.0
+ default-router 192.168.30.3
+ option 150 ip 192.168.100.1
+
+! Cisco CallManager Express (CME) Configuration
+telephony-service
+ max-ephones 10
+ max-dn 10
+ ip source-address 192.168.100.1 port 2000
+ auto assign 1 to 10
+ 
+ephone-dn 1
+ number 1001
+ephone-dn 2
+ number 1002
