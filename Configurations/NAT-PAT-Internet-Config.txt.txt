@@ -1,0 +1,14 @@
+! R1 (Core/Edge Router) NAT Overload (PAT) Configuration
+enable
+configure terminal
+! Create ACL to permit internal networks
+access-list 1 permit 192.168.0.0 0.0.255.255
+
+! Apply PAT (Overload) to the external Serial interface
+ip nat inside source list 1 interface Serial0/0/0 overload
+
+! Define Inside and Outside Interfaces
+interface GigabitEthernet1/0/6
+ ip nat inside
+interface Serial0/0/0
+ ip nat outside
