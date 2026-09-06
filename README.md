@@ -12,3 +12,9 @@ CCNA Enterprise network project using Cisco Packet Tracer, spanning 3 floors wit
 * **Device Security & Access:** Port Security, PortFast, and SSH
 * **DHCP** for automatic IP assignment across all departments
 * **PAT (NAT Overload) and ACLs** for secure external ISP routing
+* 
+## 🛠️ How to Test the Network
+1. Open the `.pkt` file using Cisco Packet Tracer.
+2. Ping from **PC1 (VLAN 40)** to the **External ISP Router (200.1.1.2)** to verify NAT/PAT.
+3. Check the **IP Phone** display to ensure it received an extension from the CME.
+4. Open the WLC interface via web browser at `192.168.100.2` to view wireless configurations.
